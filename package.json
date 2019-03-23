@@ -13,7 +13,7 @@
         "url": "https://github.com/Galen-Yip/tencent-cloud-cos-upload-image.git"
     },
     "homepage": "https://github.com/Galen-Yip/tencent-cloud-cos-upload-image",
-        "bugs": {
+    "bugs": {
         "url": "https://github.com/Galen-Yip/tencent-cloud-cos-upload-image/issues"
     },
     "engines": {
