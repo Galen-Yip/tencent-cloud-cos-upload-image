@@ -4,6 +4,18 @@
     "description": "VSCode插件，在 markdown 中选择或截图上传图片至腾讯云COS",
     "version": "0.0.1",
     "publisher": "galenye",
+    "author": {
+        "name": "galenye",
+        "email": "s275497985@gmail.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Galen-Yip/tencent-cloud-cos-upload-image.git"
+    },
+    "homepage": "https://github.com/Galen-Yip/tencent-cloud-cos-upload-image",
+        "bugs": {
+        "url": "https://github.com/Galen-Yip/tencent-cloud-cos-upload-image/issues"
+    },
     "engines": {
         "vscode": "^1.32.0"
     },
