@@ -1,8 +1,7 @@
 # tencent-cloud-cos-upload-image
 
-
 VSCode 插件，支持直接在 Markdown 文件中 **粘贴截图** 和 **选择图片** 上传到腾讯云COS，得到文件地址后引用显示。
-此插件拓展了 vscode-upload-tencentcos 的功能，它只支持了选择文件上传，但缺乏 Markdown 中常见的粘贴截图。
+此插件拓展了 vscode-upload-tencentcos 的功能，它只支持了选择文件上传，但缺乏 Markdown 中常见的粘贴截图，同时不支持文件私有的需求。
 
 ---
 
