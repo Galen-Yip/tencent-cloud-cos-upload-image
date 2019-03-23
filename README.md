@@ -8,6 +8,7 @@ VSCode 插件，支持直接在 Markdown 文件中 **粘贴截图** 和 **选择
 ## 使用
 
 在 Markdown 文件中
+
 * 使用 shift + p, 粘贴板里面的图片会直接上传至cos
 * 使用 shift + o, 选择本地文件上传至cos
 
