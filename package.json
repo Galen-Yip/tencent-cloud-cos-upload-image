@@ -2,7 +2,7 @@
     "name": "tencent-cloud-cos-upload-image",
     "displayName": "tencent-cloud-cos-upload-image",
     "description": "VSCode插件，在 markdown 中选择或截图上传图片至腾讯云COS",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "publisher": "galenye",
     "author": {
         "name": "galenye",
@@ -128,6 +128,7 @@
     },
     "dependencies": {
         "cos-nodejs-sdk-v5": "^2.5.7",
+        "mkdirp": "^0.5.1",
         "moment": "^2.18.1"
     }
 }

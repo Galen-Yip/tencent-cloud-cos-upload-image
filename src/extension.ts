@@ -1,10 +1,12 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode'
+import * as os from 'os'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as moment from 'moment'
 import { spawn } from 'child_process'
+const mkdirp = require('mkdirp')
 import COSUpload from './cos'
 
 const upload = (progress: vscode.Progress<object>, config: vscode.WorkspaceConfiguration, selectFilePath: string = '') => {
@@ -13,6 +15,19 @@ const upload = (progress: vscode.Progress<object>, config: vscode.WorkspaceConfi
 	if (!editor) {
 		return Promise.reject()
 	}
+	let remotePath = config['remotePath']
+    if (remotePath.startsWith('/')) {
+        vscode.window.showErrorMessage('remotePath can not start with /')
+        return Promise.reject()
+	}
+	if (!config.bucket) {
+        vscode.window.showErrorMessage('missing bucket param')
+        return Promise.reject()
+	}
+	if (!config.region) {
+        vscode.window.showErrorMessage('missing region param')
+        return Promise.reject()
+    }
 
 	const isPaste = !selectFilePath
 	selectFilePath = selectFilePath || `${moment().format('YYYYMMDDHHmmss')}.png`
@@ -53,7 +68,8 @@ const upload = (progress: vscode.Progress<object>, config: vscode.WorkspaceConfi
 				})
 				
 			})
-			.catch(() => {
+			.catch((e) => {
+				console.log(e)
 				progress.report({ increment: 100, message: 'Failed make folder.' })
 				vscode.window.showErrorMessage('Failed make folder.')
 				return
@@ -80,28 +96,36 @@ const upload = (progress: vscode.Progress<object>, config: vscode.WorkspaceConfi
 const getImagePath = function(filePath: string, localPath: string, selectFilePath: string) {
     // 图片名称
 	let imageFileName = path.basename(selectFilePath)
+	// imageDir = os.platform() === "win32" ? os.tmpdir() : imageDir
 
     // 图片本地保存路径
     let folderPath = path.dirname(filePath)
-    let imagePath = ''
-    if (path.isAbsolute(localPath)) {
-        imagePath = path.join(localPath, imageFileName)
+	let imagePath = ''
+
+	if (path.isAbsolute(localPath)) {
+		if (os.platform() === "win32") {
+			imagePath = path.join(os.tmpdir(), imageFileName)
+		} else {
+			imagePath = path.join(localPath, imageFileName)
+		}
     } else {
-        imagePath = path.join(folderPath, localPath, imageFileName)
+		imagePath = path.join(folderPath, localPath, imageFileName)
     }
     return imagePath
 }
 
 const createImageDirWithImagePath = function(imagePath: string) {
     return new Promise((resolve, reject) => {
-        let imageDir = path.dirname(imagePath)
+		let imageDir = path.dirname(imagePath)
+
         fs.exists(imageDir, (exists) => {
-            if (exists) {
+			if (exists) {
                 resolve(imagePath)
                 return
             }
-            fs.mkdir(imageDir, (err) => {
+            mkdirp(imageDir, (err: Error) => {
                 if (err) {
+					console.log(err)
                     reject(err)
                     return
                 }
@@ -176,12 +200,6 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "tencent-cloud-cos-upload-image" is now active!')
 
 	const config = vscode.workspace.getConfiguration('tencentCOSUpload')
-	
-	let remotePath = config['remotePath']
-    if (remotePath.startsWith('/')) {
-        vscode.window.showErrorMessage('remotePath can not start with / .')
-        return
-    }
 	
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand

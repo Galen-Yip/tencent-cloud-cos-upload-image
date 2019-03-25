@@ -59,6 +59,10 @@ export default function (config: vscode.WorkspaceConfiguration, imagePath: strin
                     Body: fs.readFileSync(path.resolve(__dirname, localFile))
                 }, (err: any, data: any) => {
 
+                    if (err) {
+                        return reject(err)
+                    } 
+
                     // delete temp file
                     if (!localFile) {
                         fs.unlink(imagePath, err => {
@@ -78,14 +82,10 @@ export default function (config: vscode.WorkspaceConfiguration, imagePath: strin
                         url = url.replace(/[^\/]+\.cos\..+\.myqcloud.com/, domain)
                     }
 
-                    if (err) {
-                        reject(err)
-                    } else {
-                        resolve({
-                            name: remoteFile,
-                            url: url
-                        })
-                    }
+                    resolve({
+                        name: remoteFile,
+                        url: url
+                    })
                 })
             })
             .catch((err) => {
