@@ -28,6 +28,14 @@ const upload = (progress: vscode.Progress<object>, config: vscode.WorkspaceConfi
         vscode.window.showErrorMessage('missing region param')
         return Promise.reject()
     }
+	if (!config.secretId) {
+        vscode.window.showErrorMessage('missing secretId param')
+        return Promise.reject()
+    }
+	if (!config.secretKey) {
+        vscode.window.showErrorMessage('missing secretKey param')
+        return Promise.reject()
+    }
 
 	const isPaste = !selectFilePath
 	selectFilePath = selectFilePath || `${moment().format('YYYYMMDDHHmmss')}.png`
