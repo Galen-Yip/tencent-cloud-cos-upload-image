@@ -1,134 +1,134 @@
 {
-    "name": "tencent-cloud-cos-upload-image",
-    "displayName": "tencent-cloud-cos-upload-image",
-    "description": "VSCode插件，在 markdown 中选择或截图上传图片至腾讯云COS",
-    "version": "0.2.2",
-    "publisher": "galenye",
-    "author": {
-        "name": "galenye",
-        "email": "s275497985@gmail.com"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Galen-Yip/tencent-cloud-cos-upload-image.git"
-    },
-    "homepage": "https://github.com/Galen-Yip/tencent-cloud-cos-upload-image",
-    "bugs": {
-        "url": "https://github.com/Galen-Yip/tencent-cloud-cos-upload-image/issues"
-    },
-    "engines": {
-        "vscode": "^1.32.0"
-    },
-    "categories": [
-        "Other"
+  "name": "tencent-cloud-cos-upload-image",
+  "displayName": "tencent-cloud-cos-upload-image",
+  "description": "VSCode插件，在 markdown 中选择或截图上传图片至腾讯云COS",
+  "version": "0.2.3",
+  "publisher": "galenye",
+  "author": {
+    "name": "galenye",
+    "email": "s275497985@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Galen-Yip/tencent-cloud-cos-upload-image.git"
+  },
+  "homepage": "https://github.com/Galen-Yip/tencent-cloud-cos-upload-image",
+  "bugs": {
+    "url": "https://github.com/Galen-Yip/tencent-cloud-cos-upload-image/issues"
+  },
+  "engines": {
+    "vscode": "^1.32.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.tencentCOSUpload.paste",
+        "title": "上传粘贴板中的截图"
+      },
+      {
+        "command": "extension.tencentCOSUpload.select",
+        "title": "上传选择的图片"
+      }
     ],
-    "activationEvents": [
-        "onLanguage:markdown"
+    "keybindings": [
+      {
+        "command": "extension.tencentCOSUpload.paste",
+        "key": "shift+p",
+        "mac": "shift+p",
+        "linux": "shift+p",
+        "win": "shift+p",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "extension.tencentCOSUpload.select",
+        "key": "shift+o",
+        "mac": "shift+o",
+        "win": "shift+o",
+        "linux": "shift+o",
+        "when": "editorTextFocus"
+      }
     ],
-    "main": "./out/extension.js",
-    "contributes": {
-        "commands": [
-            {
-                "command": "extension.tencentCOSUpload.paste",
-                "title": "上传粘贴板中的截图"
-            },
-            {
-                "command": "extension.tencentCOSUpload.select",
-                "title": "上传选择的图片"
-            }
-        ],
-        "keybindings": [
-            {
-                "command": "extension.tencentCOSUpload.paste",
-                "key": "shift+p",
-                "mac": "shift+p",
-                "linux": "shift+p",
-                "win": "shift+p",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.tencentCOSUpload.select",
-                "key": "shift+o",
-                "mac": "shift+o",
-                "win": "shift+o",
-                "linux": "shift+o",
-                "when": "editorTextFocus"
-            }
-        ],
-        "configuration": {
-            "type": "object",
-            "title": "Tencent COS upload configuration",
-            "properties": {
-                "tencentCOSUpload.enable": {
-                    "type": "boolean",
-                    "default": "true",
-                    "description": "腾讯云COS上传工具开关"
-                },
-                "tencentCOSUpload.secretId": {
-                    "type": "string",
-                    "default": "",
-                    "description": "一个有效的腾讯云Secret ID"
-                },
-                "tencentCOSUpload.secretKey": {
-                    "type": "string",
-                    "default": "",
-                    "description": "一个有效的腾讯云Secret Key"
-                },
-                "tencentCOSUpload.bucket": {
-                    "type": "string",
-                    "default": "",
-                    "description": "存储桶名称，如a-1250000000"
-                },
-                "tencentCOSUpload.region": {
-                    "type": "string",
-                    "default": "",
-                    "description": "Bucket所在区域"
-                },
-                "tencentCOSUpload.remotePath": {
-                    "type": "string",
-                    "default": "",
-                    "description": "存储目录, 如 a/b, 存储根路径则无需填写，无需以 / 开头"
-                },
-                "tencentCOSUpload.isPublic": {
-                    "type": "boolean",
-                    "default": "true",
-                    "description": "存储桶是否为公有可访问，如为私有，且希望上传后的url带签名，则设置为false"
-                },
-                "tencentCOSUpload.duration": {
-                    "type": "number",
-                    "default": "31536000",
-                    "description": "签名有效期，单位为妙，isPublic设置为 false 时有效"
-                },
-                "tencentCOSUpload.domain": {
-                    "type": "string",
-                    "default": "",
-                    "description": "自定义的域名"
-                },
-                "tencentCOSUpload.localPath": {
-                    "type": "string",
-                    "default": "/tmp/.tencentCOSUpload",
-                    "description": "临时目录"
-                }
-            }
+    "configuration": {
+      "type": "object",
+      "title": "Tencent COS upload configuration",
+      "properties": {
+        "tencentCOSUpload.enable": {
+          "type": "boolean",
+          "default": "true",
+          "description": "腾讯云COS上传工具开关"
+        },
+        "tencentCOSUpload.secretId": {
+          "type": "string",
+          "default": "",
+          "description": "一个有效的腾讯云Secret ID"
+        },
+        "tencentCOSUpload.secretKey": {
+          "type": "string",
+          "default": "",
+          "description": "一个有效的腾讯云Secret Key"
+        },
+        "tencentCOSUpload.bucket": {
+          "type": "string",
+          "default": "",
+          "description": "存储桶名称，如a-1250000000"
+        },
+        "tencentCOSUpload.region": {
+          "type": "string",
+          "default": "",
+          "description": "Bucket所在区域"
+        },
+        "tencentCOSUpload.remotePath": {
+          "type": "string",
+          "default": "",
+          "description": "存储目录, 如 a/b, 存储根路径则无需填写，无需以 / 开头"
+        },
+        "tencentCOSUpload.isPublic": {
+          "type": "boolean",
+          "default": "true",
+          "description": "存储桶是否为公有可访问，如为私有，且希望上传后的url带签名，则设置为false"
+        },
+        "tencentCOSUpload.duration": {
+          "type": "number",
+          "default": "31536000",
+          "description": "签名有效期，单位为妙，isPublic设置为 false 时有效"
+        },
+        "tencentCOSUpload.domain": {
+          "type": "string",
+          "default": "",
+          "description": "自定义的域名"
+        },
+        "tencentCOSUpload.localPath": {
+          "type": "string",
+          "default": "/tmp/.tencentCOSUpload",
+          "description": "临时目录"
         }
-    },
-    "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "npm run compile && node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "^3.3.1",
-        "vscode": "^1.1.28",
-        "tslint": "^5.12.1",
-        "@types/node": "^10.12.21",
-        "@types/mocha": "^2.2.42"
-    },
-    "dependencies": {
-        "cos-nodejs-sdk-v5": "^2.5.7",
-        "mkdirp": "^0.5.1",
-        "moment": "^2.18.1"
+      }
     }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^3.3.1",
+    "vscode": "^1.1.28",
+    "tslint": "^5.12.1",
+    "@types/node": "^10.12.21",
+    "@types/mocha": "^2.2.42"
+  },
+  "dependencies": {
+    "cos-nodejs-sdk-v5": "^2.5.7",
+    "mkdirp": "^0.5.1",
+    "moment": "^2.18.1"
+  }
 }
