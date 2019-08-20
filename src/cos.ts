@@ -49,7 +49,8 @@ export default function (config: vscode.WorkspaceConfiguration, imagePath: strin
     return new Promise((resolve, reject) => {
         getMD5(localFile)
             .then((md5) => {
-                const remoteFile = path.join(config.remotePath, `${moment().format('YYYYMMDDHHmmss')}_${md5}.png`)
+                const extname = path.extname(localFile);
+                const remoteFile = path.join(config.remotePath, `${moment().format('YYYYMMDDHHmmss')}_${md5}${extname}`)
                 cos = cos || initInstance(config)
 
                 cos.putObject({
