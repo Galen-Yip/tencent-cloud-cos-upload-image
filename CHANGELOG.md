@@ -6,6 +6,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.2.6] - 2019-08-28
+### Upgrade
+- Update key shortcut from shift+p to cmd+opt+p ( ctrl+alt+p )
+- Update key shortcut from shift+o to cmd+opt+o ( ctrl+alt+o )
+
 ## [0.2.5] - 2019-08-20
 ### Fixed
 - Keep image file suffix

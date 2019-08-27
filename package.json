@@ -40,18 +40,18 @@
     "keybindings": [
       {
         "command": "extension.tencentCOSUpload.paste",
-        "key": "shift+p",
-        "mac": "shift+p",
-        "linux": "shift+p",
-        "win": "shift+p",
+        "key": "ctrl+alt+p",
+        "mac": "cmd+alt+p",
+        "linux": "ctrl+alt+p",
+        "win": "ctrl+alt+p",
         "when": "editorTextFocus"
       },
       {
         "command": "extension.tencentCOSUpload.select",
-        "key": "shift+o",
-        "mac": "shift+o",
-        "win": "shift+o",
-        "linux": "shift+o",
+        "key": "ctrl+alt+o",
+        "mac": "cmd+alt+o",
+        "win": "ctrl+alt+o",
+        "linux": "ctrl+alt+o",
         "when": "editorTextFocus"
       }
     ],
