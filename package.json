@@ -129,6 +129,6 @@
   "dependencies": {
     "cos-nodejs-sdk-v5": "^2.5.7",
     "mkdirp": "^0.5.1",
-    "moment": "^2.18.1"
+    "moment": "^2.29.4"
   }
 }
